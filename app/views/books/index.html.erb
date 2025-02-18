@@ -1,6 +1,10 @@
+<table>
+<tr><th>Title </th><th> Opinion</th></tr>
 <% @books.each do |book| %>
   <div>
-    <p>Title<%= book.title %></p>
-    <p>Opinion<%= book.body %></p>
+    <td><span class="book-title"><p><%= book.title %></p></td>
+    <td><span class="book-title"><p><%= book.body %></p></td>
+  </tr>
   </div>
 <% end %>
+</table>
