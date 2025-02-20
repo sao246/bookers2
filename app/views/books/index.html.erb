@@ -1,8 +1,12 @@
+<%= render partial: 'users/show', locals: { user: @user } %>
+<%= render partial: 'books/new', locals: { book: @book }%>
+<h1>Books</h1>
 <table>
 <tr><th>Title </th><th> Opinion</th></tr>
 <% @books.each do |book| %>
   <div>
-    <td><span class="book-title"><p><%= book.title %></p></td>
+    <td><span class="book-title"><p><%= link_to "#{book.user.name}", user_path(book.user.id) %></p></td>
+    <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id) %></p></td>
     <td><span class="book-title"><p><%= book.body %></p></td>
   </tr>
   </div>

@@ -1,10 +1,15 @@
+<%= render partial: 'books/new', locals: { book: @book }%>
+<%= render partial: 'books/show', locals: { book: @book2}%>
 <!-- ユーザーの詳細 -->
-
 <% if user_signed_in? %>
 <div>
-  <h3><%= @user.name %></h3>
-  <h3><%= @user.introduction %></h3>
-  <p>投稿ユーザー画像：<%= image_tag @user.get_profile_image(100,100) %></p>
+  <h1>User info</h1>
+  <h3>name  <%= @user.name %></h3>
+  <h3>introduction  <%= @user.introduction %></h3>
+  <p><%= image_tag @user.get_profile_image(100,100) %></p>
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "Update User", edit_user_path(@user) %></p>
+  <% end %>
 </div>
 
 <% end %>

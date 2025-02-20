@@ -10,8 +10,22 @@ class BooksController < ApplicationController
     redirect_to '/'
   end
 
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+    redirect_to book_path(@book.id)
+    else
+      redirect_to root_path
+    end
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
   def index
    @books = Book.all
+   @book = Book.new
   end
 
   def show

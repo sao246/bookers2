@@ -1,0 +1,13 @@
+<h1>Books</h1>
+<table>
+<div>
+  <td><span class="book-title"><p><%= book.title %></p></td>
+  <td><span class="book-title"><p><%= book.body %></p></td>
+  <td><span class="book-title"><p><%= book.user.name %></p></td>
+  <td><span class="book-title"><p><%= image_tag 'no_image.jpg' %></p></td>
+  <% if book.user == current_user %>
+    <td><span class="book-title"><%= link_to "Edit", edit_book_path(book) %></td>
+    <td><span class="book-title"><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+  <% end %>
+</table>
+</div>

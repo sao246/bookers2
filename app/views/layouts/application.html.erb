@@ -14,7 +14,8 @@
     <header>
       <% if user_signed_in? %>
         <%= link_to "Bookers", top_path %>
-        <%= link_to "Home", users_path %>
+        <!-- メンターさん質問箇所　-->
+        <%= link_to "Home", user_path(current_user) %>
         <%= link_to "Users", users_path %>
         <%= link_to "Books", books_path %>
         <%= link_to "Log out", destroy_user_session_path, method: :delete %>
