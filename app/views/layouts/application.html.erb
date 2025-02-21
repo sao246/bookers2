@@ -5,18 +5,44 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
-      <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <script src="https://kit.fontawesome.com/e3debef22c.js" crossorigin="anonymous"></script>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
       <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <% if user_signed_in? %>
-        <%= link_to "Bookers", top_path %>
-        <%= link_to "Home", user_path(current_user) %>
-        <%= link_to "Users", users_path %>
-        <%= link_to "Books", books_path %>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+        <% if user_signed_in? %>
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+             <%= link_to "Bookers", top_path, class: "nav-link text-light" %>
+            </li>
+          </ul>
+       <div class="d-flex align-items-end">
+        <ul class="navbar-nav ml-auto">
+        <div style="display: flex; align-items: center;">
+          <i class="fa-solid fa-house" style="color: #ffffff;"></i><%= link_to "Home", user_path(current_user), class: "nav-link text-light" %>
+        </div>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <div style="display: flex; align-items: center;">
+            <i class="fa-solid fa-users", style="color: #ffffff;"></i><%= link_to "Users", users_path, class: "nav-link text-light" %>
+          </div>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <div style="display: flex; align-items: center;">
+            <i class="fa-solid fa-book-open", style="color: #ffffff;"></i><%= link_to "Books", books_path, class: "nav-link text-light" %>
+          </div>
+         </ul>
+        <ul class="navbar-nav ml-auto">
+          <div style="display: flex; align-items: center;">
+            <i class="fa-solid fa-right-from-bracket", style="color: #ffffff;"></i><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link text-light" %>
+          </div>
+         </ul>
+      </div>
       <% else %>
         <%= link_to "Bookers", top_path %>
         <%= link_to "Home", top_path %>
@@ -24,7 +50,12 @@
         <%= link_to "Sign up", new_user_registration_path %>
         <%= link_to "Log in", new_user_session_path %>
       <% end %>
+    </ul>
+
     </header>
+    
+     </nav>
+
     <% unless (controller_name == "sessions" && action_name == "new") %> 
       <% flash.each do |key, message| %>
         <div class="alert alert-<%= key %>">
@@ -34,4 +65,11 @@
     <% end %>
     <%= yield %>
   </body>
+
+  <footer>
+    <div class="d-flex justify-content-center">
+      CopyRight Infratop.inc
+    </div>
+  </footer>
 </html>
+
