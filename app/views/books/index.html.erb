@@ -1,14 +1,24 @@
 <%= render partial: 'users/show', locals: { user: @user }%>
 <%= render partial: 'books/new', locals: { book: @book }%>
+
 <h1>Books</h1>
 <table>
-<tr><th> </th><th>Title </th><th> Opinion</th></tr>
-<% @books.each do |book| %>
-  <div>
-    <td><span class="book-title"><p><%= link_to "#{book.user.name}", user_path(book.user.id) %></p></td>
-    <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.user.id) %></p></td>
-    <td><span class="book-title"><p><%= book.body %></p></td>
+  <tr>
+    <th> </th>
+    <th>Title </th>
+    <th> Opinion</th>
   </tr>
-  </div>
-<% end %>
+  <% @books.each do |book| %>
+    <div>
+      <tr>
+        <% if book.user.profile_image.attached? %>
+          <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+        <% else %>
+          <p><%= image_tag 'no_image', size: '100x100' %></p>
+        <% end %>
+        <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id) %></p></td>
+        <td><span class="book-title"><p><%= book.body %></p></td>
+      </tr>
+    </div>
+  <% end %>
 </table>

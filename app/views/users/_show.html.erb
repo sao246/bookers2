@@ -3,6 +3,10 @@
   <h1>User Info</h1>
   <h3>name  <%= current_user.name %></h3>
   <h3>introduction  <%= current_user.introduction %></h3>
-  <p><%= image_tag current_user.get_profile_image(100,100) %></p>
+  <% if current_user.profile_image.attached? %>
+    <p><%= image_tag current_user.get_profile_image(100,100) %></p>
+  <% else %>
+    <p><%= image_tag 'no_image', size: '100x100' %></p>
+  <% end %>
 </div>
 <% end %> 

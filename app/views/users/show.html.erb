@@ -1,16 +1,21 @@
-<%= render partial: 'books/new', locals: { book: @book }%>
+
 <!-- ユーザーの詳細 -->
 <% if user_signed_in? %>
 <div>
   <h1>User info</h1>
   <h3>name  <%= @user.name %></h3>
   <h3>introduction  <%= @user.introduction %></h3>
-  <p><%= image_tag @user.get_profile_image(100,100) %></p>
+  <% if @user.profile_image.attached? %>
+    <p><%= image_tag @user.get_profile_image(100,100) %></p>
+  <% else %>
+    <p><%= image_tag 'no_image', size: '100x100' %></p>
+  <% end %>
   <% if @user.id == current_user.id %>
     <p><%= link_to "Update User", edit_user_path(@user) %></p>
   <% end %>
-
 <% end %>
+
+<%= render partial: 'books/new', locals: { book: @book }%>
 
 <h1>Books</h1>
 <table>
@@ -23,8 +28,8 @@
 <% if book.user.id == @user.id %>
   <div>
   <tr>
-    <td><span class="book-title"><p><%= link_to "#{book.user.name}", user_path(book.user.id) %></p></td>
-    <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id) %></p></td>
+    <td><span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p></td>
+    <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id)%></p></td>
     <td><span class="book-title"><p><%= book.body %></p></td>
   </tr>
   </div>
