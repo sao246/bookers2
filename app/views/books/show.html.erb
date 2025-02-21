@@ -30,8 +30,8 @@
     <td><span class="book-title"><p><%= @book_detail.title %></p></td>
     <td><span class="book-title"><p><%= @book_detail.body %></p></td>
     <% if @book_detail.user == current_user %>
-      <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail) %></td>
-      <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+      <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail), class: "btn btn-success" %></td>
+      <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger" %></td>
     <% end %>
   </table>
 </div>

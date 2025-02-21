@@ -8,6 +8,8 @@
     <% else %>
       <p><%= image_tag 'no_image', size: '100x100' %></p>
     <% end %>
-      <p><%= link_to "Update User", edit_user_path(current_user) %></p>
+    <%= link_to edit_user_path(current_user),class: "btn btn-outline-secondary btn-lg" do %>
+       <i class="fa-solid fa-user-gear"></i>
+    <% end %>  
   </div>
 <% end %> 
