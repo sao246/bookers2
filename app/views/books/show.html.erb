@@ -1,16 +1,26 @@
-<%= render partial: 'users/show', locals: { user: @user }%>
+<h1>User info</h1>
+<h3>name<%= @book_detail.user.name %></h3>
+<h3>introduction  <%= @book_detail.user.introduction %></h3>
+  <% if @book_detail.user.profile_image.attached? %>
+    <p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p>
+  <% else %>
+    <p><%= image_tag 'no_image', size: '100x100' %></p>
+  <% end %>
+    <p><%= link_to "Update User", edit_user_path(@book_detail.user.id) %></p>
+  </div>
+
 <%= render partial: 'books/new', locals: { book: @book }%>
 
 <h1>Book detail</h1>
-<table>
 <div>
-  <td><span class="book-title"><p><%= @book_detail.title %></p></td>
-  <td><span class="book-title"><p><%= @book_detail.body %></p></td>
-  <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
-  <p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p>
-  <% if @book_detail.user == current_user %>
-    <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail) %></td>
-    <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
-  <% end %>
-</table>
+  <table>
+    <td><span class="book-title"><p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p></td>
+    <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
+    <td><span class="book-title"><p><%= @book_detail.title %></p></td>
+    <td><span class="book-title"><p><%= @book_detail.body %></p></td>
+    <% if @book_detail.user == current_user %>
+      <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail) %></td>
+      <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
+    <% end %>
+  </table>
 </div>
