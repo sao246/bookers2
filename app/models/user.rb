@@ -15,3 +15,19 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 end
+
+def login
+  @login || self.name || self.email
+end
+  # このメソッドを追加して、ログインに名前かメールアドレスのいずれかを使えるようにする
+  def self.find_for_database_authentication(warden_conditions)
+    conditions = warden_conditions.dup
+
+    # loginというパラメータでusername（name）かemailを使えるようにする
+    if login = conditions.delete(:login)
+      # usernameかemailで検索する
+      where(conditions).where(["username = :value OR email = :value", { :value => login }]).first
+    else
+      where(conditions).first
+    end
+  end

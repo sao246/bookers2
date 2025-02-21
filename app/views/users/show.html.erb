@@ -1,5 +1,4 @@
 <%= render partial: 'books/new', locals: { book: @book }%>
-<%= render partial: 'books/show', locals: { book: @book2}%>
 <!-- ユーザーの詳細 -->
 <% if user_signed_in? %>
 <div>
@@ -10,6 +9,25 @@
   <% if @user.id == current_user.id %>
     <p><%= link_to "Update User", edit_user_path(@user) %></p>
   <% end %>
-</div>
 
 <% end %>
+
+<h1>Books</h1>
+<table>
+  <tr>
+    <th></th>
+    <th>Title </th>
+    <th> Opinion</th>
+  </tr>
+<% @books.each do |book| %>
+<% if book.user.id == @user.id %>
+  <div>
+  <tr>
+    <td><span class="book-title"><p><%= link_to "#{book.user.name}", user_path(book.user.id) %></p></td>
+    <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id) %></p></td>
+    <td><span class="book-title"><p><%= book.body %></p></td>
+  </tr>
+  </div>
+  <% end %>
+<% end %>
+</table>
