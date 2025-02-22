@@ -6,9 +6,9 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css" />
 </head>
-<div class="container mt-4"> 
+<div class="container"> 
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-3">
       <% if user_signed_in? %>
         <div>
           <h1 class="w-100 m-1 mt-4">User info</h1>
@@ -29,8 +29,8 @@
       
       <%= render partial: 'books/new', locals: { book: @book }%>
     </div>
-
-    <div class="col-lg-8">
+    <div class="offset-md-1"></div>
+    <div class="col-md-8">
       <h1 class="mt-4">Books</h1>
        <table class="table">
           <tr>

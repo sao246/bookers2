@@ -347,6 +347,7 @@ describe '[STEP3] 仕上げのテスト' do
     end
     it '投稿詳細画面', spec_category: "Bootstrapの基本的なシステムとレイアウト組み" do
       visit book_path(book)
+      save_and_open_page
       is_expected.to have_selector '.container .row .col-md-3'
       is_expected.to have_selector '.container .row .col-md-8.offset-md-1'
     end

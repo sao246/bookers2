@@ -6,6 +6,7 @@ class Book < ApplicationRecord
   
   validates :body, presence: true, if: :creating?
   validates :body, presence: true, if: :editing?
+  validates :body, length: { in: 0..200 }
   
   def get_book
     if title.attached?
