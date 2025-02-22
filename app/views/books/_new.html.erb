@@ -1,8 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<div class="container mt-4">
 <h1>New book</h1>
 <%= form_with model: book do |f| %>
-  <h4>Title</h4>
+  <h6>Title</h6>
   <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
+  <h6>Opinion</h6>
+  <%= f.text_area :body %><br>
   <%= f.submit 'Create book',  class: "btn btn-success"%>
 <% end %>
+</div>

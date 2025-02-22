@@ -1,15 +1,17 @@
 <% if user_signed_in? %>
   <div>
-    <h1>User Info</h1>
-    <h3>name  <%= current_user.name %></h3>
-    <h3>introduction  <%= current_user.introduction %></h3>
-    <% if current_user.profile_image.attached? %>
-      <p><%= image_tag current_user.get_profile_image(100,100) %></p>
-    <% else %>
-      <p><%= image_tag 'no_image', size: '100x100' %></p>
-    <% end %>
-    <%= link_to edit_user_path(current_user),class: "btn btn-outline-secondary btn-lg" do %>
-       <i class="fa-solid fa-user-gear"></i>
-    <% end %>  
+    <div class="container mt-3">
+    <h1 class="w-100 m-3">User Info</h1>
+      <% if current_user.profile_image.attached? %>
+        <p class="w-100 m-3"><%= image_tag current_user.get_profile_image(100,100) %></p>
+      <% else %>
+        <p><%= image_tag 'no_image', size: '100x100' %></p>
+      <% end %>
+        <h5 class="w-100 m-3">name<span class="text-body"><%= current_user.name %></span></h5>
+        <h5 class="w-100 m-3">introduction  <span class="text-body"><%= current_user.introduction %></span></h5>
+      <%= link_to edit_user_path(current_user),class: "btn btn-outline-secondary btn w-50" do %>
+        <i class="fa-solid fa-user-gear"></i>
+      <% end %>  
+    </div>
   </div>
 <% end %> 
