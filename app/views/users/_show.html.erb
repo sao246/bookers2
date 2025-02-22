@@ -1,14 +1,14 @@
 <% if user_signed_in? %>
   <div>
     <div class="container mt-3">
-    <h1 class="w-100 m-3">User Info</h1>
+    <h1 class="w-100 m-4">User Info</h1>
       <% if current_user.profile_image.attached? %>
-        <p class="w-100 m-3"><%= image_tag current_user.get_profile_image(100,100) %></p>
+        <p class="w-100 m-4"><%= image_tag current_user.get_profile_image(100,100) %></p>
       <% else %>
         <p><%= image_tag 'no_image', size: '100x100' %></p>
       <% end %>
-        <h5 class="w-100 m-3">name<span class="text-body"><%= current_user.name %></span></h5>
-        <h5 class="w-100 m-3">introduction  <span class="text-body"><%= current_user.introduction %></span></h5>
+        <h5 class="w-100 m-4">name<span class="text-body"><%= current_user.name %></span></h5>
+        <h5 class="w-100 m-4">introduction  <span class="text-body"><%= current_user.introduction %></span></h5>
       <%= link_to edit_user_path(current_user),class: "btn btn-outline-secondary btn w-50" do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>  
