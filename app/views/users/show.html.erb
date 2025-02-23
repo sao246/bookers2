@@ -38,7 +38,16 @@
           <% @books.each do |book| %>
             <% if book.user.id == @user.id %>
               <tr>
-                <td><span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p></td>
+                <td>
+                <% if book.user == current_user %>
+                  <%= link_to user_path(book.user.id), onclick: "event.stopPropagation();" do %>
+                    <span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p>
+                  <% end %>
+                <% else %>
+                <%= link_to user_path(book.user.id), onclick: "return false;" do %>
+                    <span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p>
+                  <% end %> <% end %>
+                </td>
                 <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id)%></p></td>
                 <td><span class="book-title"><p><%= book.body %></p></td>
               </tr>

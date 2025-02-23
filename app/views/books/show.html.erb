@@ -32,10 +32,15 @@
       <h1 class="m-4">Book detail</h1>
         <table class="table">
           <tr>
-              <td><span class="book-title"><p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p></td>
-              <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
-              <td><span class="book-title"><p><%= @book_detail.title %></p></td>
-              <td><span class="book-title"><p><%= @book_detail.body %></p></td>
+            <td>
+              <%= link_to user_path(@book_detail.user.id), onclick: "event.stopPropagation();" do %>
+              <span class="book-title"><p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p>
+              <% end %>
+            <td>
+            <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
+            <td><span class="book-title"><p><%= @book_detail.title %></p></td>
+            <td><span class="book-title"><p><%= @book_detail.body %></p></td>
+            
             <% if @book_detail.user == current_user %>
               <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail), class: "btn btn-success" %></td>
               <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger" %></td>

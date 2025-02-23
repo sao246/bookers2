@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
+
 <main>
   <body>
   <div class="container">
@@ -25,13 +26,17 @@
             </tr>
             <% @books.each do |book| %>
                   <% if book.user.profile_image.attached? %>
-                  <td>
-                  <%= link_to user_path(book.user.id), onclick: "event.stopPropagation();" do %>
-                    <span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p>
-                  <% end %>
-                  </td>
+                    <td>
+                    <%= link_to user_path(book.user.id), onclick: "event.stopPropagation();" do %>
+                      <span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p>
+                    <% end %>
+                    </td>
                   <% else %>
-                    <td><span class="book-title"><p><%= image_tag 'no_image', size: '100x100' %></p></td>
+                    <td>
+                    <%= link_to user_path(book.user.id), onclick: "event.stopPropagation();" do %>
+                    <span class="book-title"><p><%= image_tag 'no_image', size: '100x100' %></p>
+                    <% end %>
+                    </td>
                   <% end %>
                   <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id), onclick: "event.stopPropagation();" %></p></td>
                   <td><span class="book-title"><p><%= book.body %></p></td>

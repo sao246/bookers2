@@ -65,10 +65,11 @@
     <% unless (controller_name == "sessions" && action_name == "new") %> 
       <% flash.each do |key, message| %>
         <div class="alert alert-<%= key %>">
-          <%= message %>
+          <%= message.html_safe %>
         </div>
       <% end %>
     <% end %>
+
     <%= yield %>
   </body>
 

@@ -11,7 +11,10 @@ class BooksController < ApplicationController
       flash[:notice] = "You have created book successfully."
       redirect_to book_path(@book.id)
     else
-      render :new
+      error_messages = "#{@book.errors.count} errors prohibited this obj from being saved:<br>" +
+      @book.errors.full_messages.map { |msg| "・#{msg}" }.join("<br>")
+      flash[:alert] = error_messages.html_safe
+      redirect_to books_path
     end
   end
 
@@ -37,6 +40,7 @@ class BooksController < ApplicationController
   end
 
   def show
+
     @book_detail= Book.find(params[:id])
     @book = Book.new
   end
@@ -58,4 +62,5 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+
 end
