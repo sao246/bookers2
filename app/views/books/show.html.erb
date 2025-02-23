@@ -36,6 +36,7 @@
             <% if @book_detail.user == current_user %>
               <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail), class: "btn btn-success" %></td>
               <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger" %></td>
+            
             <% end %>
           </tr>
        </table>

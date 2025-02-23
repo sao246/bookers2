@@ -18,5 +18,9 @@
   <%= f.text_field :title, autofocus: true, id:"inputTitle" %>
   <label>Opinion</label>
   <%= f.text_area :body, autofocus: true, id:"inputTitle" %>  
-  <%= f.submit "Update Book" %>
+  <%= f.submit "Update Book", class: "btn btn-success" %>
+  <p>
+  <span class="book-title"><%= link_to "Show", book_path(@book.id) %> |
+  <span class="book-title"><%= link_to "Back", books_path %>
+  </p>
 <% end %>
