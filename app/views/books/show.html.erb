@@ -13,13 +13,16 @@
       <h1 class ="m-4">User info</h1>
       <h3>name<%= @book_detail.user.name %></h3>
       <h3>introduction  <%= @book_detail.user.introduction %></h3>
+        <% if @book_detail.user.id == current_user.id %>
+          <p><%= link_to "Update User", edit_user_path(@book_detail.user.id) %></p>
+        <% end %>
         <% if @book_detail.user.profile_image.attached? %>
           <p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p>
         <% else %>
           <p><%= image_tag 'no_image', size: '100x100' %></p>
         <% end %>
-        <% if @book_detail.user.id == current_user.id %>
-          <p><%= link_to "Update User", edit_user_path(@book_detail.user.id) %></p>
+        <%= link_to edit_user_path(@book_detail.user.id), class: "btn btn-outline-secondary btn w-50" do %>
+          <i class="fa-solid fa-user-gear"></i>
         <% end %>
 
       <%= render partial: 'books/new', locals: { book: @book }%>
@@ -29,14 +32,13 @@
       <h1 class="m-4">Book detail</h1>
         <table class="table">
           <tr>
-            <td><span class="book-title"><p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p></td>
-            <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
-            <td><span class="book-title"><p><%= @book_detail.title %></p></td>
-            <td><span class="book-title"><p><%= @book_detail.body %></p></td>
+              <td><span class="book-title"><p><%= image_tag @book_detail.user.get_profile_image(100,100) %></p></td>
+              <td><span class="book-title"><p><%= link_to "#{@book_detail.user.name}", user_path(@book_detail.user.id) %></p></td>
+              <td><span class="book-title"><p><%= @book_detail.title %></p></td>
+              <td><span class="book-title"><p><%= @book_detail.body %></p></td>
             <% if @book_detail.user == current_user %>
               <td><span class="book-title"><%= link_to "Edit", edit_book_path(@book_detail), class: "btn btn-success" %></td>
               <td><span class="book-title"><%= link_to "Destroy", book_path(@book_detail.id), method: :delete, "data-confirm" => "Are you sure?", class: "btn btn-danger" %></td>
-            
             <% end %>
           </tr>
        </table>

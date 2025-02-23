@@ -6,6 +6,7 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <div class="container"> 
   <div class="row">
     <div class="col-md-3">
@@ -14,22 +15,18 @@
           <h1 class="w-100 m-1 mt-4">User info</h1>
             <% if @user.profile_image.attached? %>
             <p><%= image_tag @user.get_profile_image(100,100) %></p>
-          <% else %>
-            <p><%= image_tag 'no_image', size: '100x100' %></p>
-          <% end %>
-          <% if @user.id == current_user.id %>
-            <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn w-50" do %>
-              <i class="fa-solid fa-user-gear"></i>
-          <% end %>
-          <% end %>
+            <% else %>
+              <p><%= image_tag 'no_image', size: '100x100' %></p>
+            <% end %>
             <h5 class="w-100 m-1">name<%= @user.name %></h5>
             <h5 class="w-100 m-1">introduction<%= @user.introduction %></h5>
+            <%= link_to edit_user_path(@user.id), class: "btn btn-outline-secondary btn w-50" do %>
+            <i class="fa-solid fa-user-gear"></i>
+            <% end %>
         </div>
       <% end %>
-      
       <%= render partial: 'books/new', locals: { book: @book }%>
     </div>
-
     <div class="col-md-8 offset-md-1">
       <h1 class="mt-4">Books</h1>
        <table class="table">
@@ -39,14 +36,12 @@
             <th> Opinion</th>
           </tr>
           <% @books.each do |book| %>
-          <% if book.user.id == @user.id %>
-            <div>
-            <tr>
-              <td><span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p></td>
-              <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id)%></p></td>
-              <td><span class="book-title"><p><%= book.body %></p></td>
-            </tr>
-            </div>
+            <% if book.user.id == @user.id %>
+              <tr>
+                <td><span class="book-title"><p><%= image_tag book.user.get_profile_image(100,100) %></p></td>
+                <td><span class="book-title"><p><%= link_to "#{book.title}", book_path(book.id)%></p></td>
+                <td><span class="book-title"><p><%= book.body %></p></td>
+              </tr>
             <% end %>
           <% end %>
         </table>

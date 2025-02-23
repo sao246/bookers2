@@ -9,7 +9,7 @@
       <% end %>
         <h5 class="w-100 m-4">name<span class="text-body"><%= current_user.name %></span></h5>
         <h5 class="w-100 m-4">introduction  <span class="text-body"><%= current_user.introduction %></span></h5>
-      <%= link_to edit_user_path(current_user),class: "btn btn-outline-secondary btn w-50" do %>
+      <%= link_to edit_user_path(current_user.id),class: "btn btn-outline-secondary btn w-50" do %>
         <i class="fa-solid fa-user-gear"></i>
       <% end %>  
     </div>
