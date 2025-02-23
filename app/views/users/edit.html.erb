@@ -1,32 +1,58 @@
-<h2>User info</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<% if @user.errors.any? %>
-  <% if @user.errors.count == 1 %>
-    <%= @user.errors.count %> error prohibited this obj from being saved:
-  <% else %>
-    <%= @user.errors.count %> errors prohibited this obj from being saved:
-  <% end %>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-<% end %>
-
-  <%= form_with model: @user do |f| %>  
-  <h4>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName" %>
-  </h4>
-  <h4>
-  <label for="inputImage">Image</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>  
-  </h4>
-  <h4>  
-  <label for="inputIntroduction">Introduction</label>
-  <%= f.text_area :introduction, autofocus: true, id:"inputName" %> 
-  </h4>
-  <h4>
-  <%= f.submit "Update User" %>
-  </h4>
-<% end %>
+  <main>
+    <body>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="d-flex justify-content-start m-3">
+             <h2>User info</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="d-flex justify-content-start m-3">  
+            <% if @user.errors.any? %>
+              <% if @user.errors.count == 1 %>
+                <%= @user.errors.count %> error prohibited this obj from being saved:
+              <% else %>
+                <%= @user.errors.count %> errors prohibited this obj from being saved:
+              <% end %>
+                <ul>
+                  <% @user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+            <% end %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="d-flex justify-content-start m-3">  
+            <%= form_with model: @user do |f| %>  
+              <h6>
+                <label for="inputName">Name</label><br>
+                <%= f.text_field :name, autofocus: true, id:"inputName" %>
+              </h6>
+              <h6>
+                <label for="inputImage">Image</label><br>
+                <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>  
+              </h6>
+              <h6>  
+                <label for="inputIntroduction">Introduction</label><br>
+                <%= f.text_area :introduction, autofocus: true, id:"inputName" %><br>
+              </h6>
+              <h6>
+                <%= f.submit "Update User", class: "btn btn-secondary" %>
+              </h6>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </body>
+  </main>
+</html>

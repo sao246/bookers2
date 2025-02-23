@@ -40,7 +40,6 @@ class BooksController < ApplicationController
   end
 
   def show
-
     @book_detail= Book.find(params[:id])
     @book = Book.new
   end
@@ -62,5 +61,4 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
-
 end

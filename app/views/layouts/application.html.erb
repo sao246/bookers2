@@ -62,6 +62,7 @@
         </nav>
       <% end %>
     </header>
+    
     <% unless (controller_name == "sessions" && action_name == "new") %> 
       <% flash.each do |key, message| %>
         <div class="alert alert-<%= key %>">
